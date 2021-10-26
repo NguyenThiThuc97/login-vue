@@ -1,4 +1,5 @@
-module login
+module login //go mod init login
+// go get - u git gonic
 
 go 1.17
 

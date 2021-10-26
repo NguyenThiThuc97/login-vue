@@ -36,9 +36,18 @@ func NewHandler(c *Config) {
 }
 
 func (h *Handler) SignIn(c *gin.Context) {
-	c.JSON(http.StatusOK, gin.H{
-		"hello": "it's login",
-	})
+	if c.Request.FormValue("username") == "admin" && c.Request.FormValue("password") == "123" {
+		c.JSON(http.StatusOK, gin.H{
+			"status": "success",
+			"hello":  "it's login",
+		})
+	} else {
+		c.JSON(401, gin.H{
+			"status":  "err",
+			"message": "incorrect info",
+		})
+	}
+
 }
 
 func ValidateToken() gin.HandlerFunc {

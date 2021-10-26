@@ -1,39 +1,38 @@
 <template>
-	<div class="col-md-12">
-		<div class="card card-container">
-			<img
-				id="profile-img"
-				src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
-				class="profile-img-card"
-			/>
-			<Form @submit="handleLogin" :validation-schema="schema">
+	<div class="login-container text-c animated flipInX">
+		<div>
+			<h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
+		</div>
+			<h3 class="text-whitesmoke">Sign In Template</h3>
+			<p class="text-whitesmoke">Sign In</p>
+		<div class="container-content">
+			<Form @submit="handleLogin" :validation-schema="schema" class="margin-t">
 				<div class="form-group">
-				<label for="username">Username</label>
-				<Field name="username" type="text" class="form-control" />
-				<ErrorMessage name="username" class="error-feedback" />
+					<Field name="username" type="text" class="form-control" aria-placeholder="Username" />
+					<ErrorMessage name="username" class="error-feedback" />
 				</div>
 				<div class="form-group">
-				<label for="password">Password</label>
-				<Field name="password" type="password" class="form-control" />
-				<ErrorMessage name="password" class="error-feedback" />
+					<Field name="password" type="password" class="form-control" placeholder="*****" />
+					<ErrorMessage name="password" class="error-feedback" />
 				</div>
-
-				<div class="form-group">
-				<button class="btn btn-primary btn-block" :disabled="loading">
+				<button class="form-button button-l margin-b" :disabled="loading">
 					<span
 					v-show="loading"
 					class="spinner-border spinner-border-sm"
 					></span>
-					<span>Login</span>
+					<span>Sign In</span>
 				</button>
-				</div>
 
+				<a class="text-darkyellow" href="#"><small>Forgot your password?</small></a>
+				<p class="text-whitesmoke text-center"><small>Do not have an account?</small></p>
+				<a class="text-darkyellow" href="#"><small>Sign Up</small></a>
 				<div class="form-group">
-				<div v-if="message" class="alert alert-danger" role="alert">
-					{{ message }}
+					<div v-if="message" class="alert alert-danger" role="alert">
+						{{ message }}
+					</div>
 				</div>
-				</div>
-			</Form>
+			</form>
+			<p class="margin-t text-whitesmoke"><small> Your Name &copy; 2018</small> </p>
 		</div>
 	</div>
 </template>
