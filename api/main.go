@@ -4,18 +4,22 @@ import (
 	"context"
 	"fmt"
 	"log"
+	"login/handler"
 	"net/http"
 	"os"
 	"os/signal"
 	"syscall"
 	"time"
-	"workspace/login/api/handler"
+
+	"login/models" // new
 
 	"github.com/gin-gonic/gin"
 )
 
 func main() {
 	router := gin.Default()
+
+	models.ConnectDataBase()
 
 	router.Use(CORSMiddleware())
 	router.Use(PrintMiddleware)
