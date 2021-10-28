@@ -3,28 +3,35 @@
 		<div>
 			<h1 class="logo-badge text-whitesmoke"><span class="fa fa-user-circle"></span></h1>
 		</div>
-			<h3 class="text-whitesmoke">Sign In</h3>
+			<h3 class="text-whitesmoke">Sign Up</h3>
+			<!-- <p class="text-whitesmoke">Sign In</p> -->
 		<div class="container-content">
-			<Form @submit="handleLogin" :validation-schema="schema" class="margin-t">
+			<Form @submit="handleRegister" :validation-schema="schema" class="margin-t">
 				<div class="form-group">
-					<Field name="username" type="text" class="form-control" placeholder="Username" autocomplete="off"/>
+					<Field name="username" type="text" class="form-control" placeholder="Username" />
 					<ErrorMessage name="username" class="error-feedback" />
+				</div>
+				<div class="form-group">
+					<Field name="email" type="text" class="form-control" placeholder="Email" />
+					<ErrorMessage name="email" class="error-feedback" />
 				</div>
 				<div class="form-group">
 					<Field name="password" type="password" class="form-control" placeholder="Password" />
 					<ErrorMessage name="password" class="error-feedback" />
+				</div>
+				<div class="form-group">
+					<Field name="re_password" type="password" class="form-control" placeholder="Confirm Password" />
+					<ErrorMessage name="re_password" class="error-feedback" />
 				</div>
 				<button class="form-button button-l margin-b" :disabled="loading">
 					<span
 					v-show="loading"
 					class="spinner-border spinner-border-sm"
 					></span>
-					<span>Sign In</span>
+					<span>Sign Up</span>
 				</button>
-
-				<a class="text-darkyellow" href="#"><small>Forgot your password?</small></a>
-				<p class="text-whitesmoke text-center"><small>Do not have an account?</small></p>
-				<router-link to="/register" class="text-darkyellow"><small>Sign Up</small></router-link>
+				<p class="text-whitesmoke text-center"><small>Have already an account?</small></p>
+				<router-link to="/signin" class="text-darkyellow"><small>Sign In</small></router-link>
 				<div class="form-group">
 					<div v-if="message" class="alert alert-danger" role="alert">
 						{{ message }}
@@ -60,20 +67,20 @@
 			};
 		},
 		computed: {
-			loggedIn() {
-				return this.$store.state.auth.status.loggedIn;
-			},
+			// loggedIn() {
+			// return this.$store.state.auth.status.loggedIn;
+			// },
 		},
 		created() {
-			if (this.loggedIn) {
-				this.$router.push("/home");
-			}
+			// if (this.loggedIn) {
+			// this.$router.push("/profile");
+			// }
 		},
 		methods: {
-			handleLogin(user) {
+			handleRegister(user) {
 				this.loading = true;
 
-				this.$store.dispatch("auth/login", user, {root:true}).then(
+				this.$store.dispatch("auth/register", user, {root:true}).then(
 					() => {
 						this.$router.push("/");
 					},

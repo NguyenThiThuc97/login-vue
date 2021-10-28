@@ -1,8 +1,8 @@
 package controllers
 
 import (
+	models "login/models"
 	"net/http"
-	models "workspace/login/api/models"
 
 	"github.com/gin-gonic/gin"
 	"github.com/jinzhu/gorm"

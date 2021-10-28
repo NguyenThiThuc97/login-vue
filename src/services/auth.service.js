@@ -4,15 +4,14 @@ const API_URL = 'http://localhost:8080/api/';
 
 class AuthService {
 	login(user) {
-		const params = new URLSearchParams();
-		params.append('username', user.username);
-		params.append('password', user.password);
 		return axios
-		.post(API_URL + 'signin', params)
+		.post(API_URL + 'signin', {
+			username : user.username,
+			password : user.password
+		})
 		.then(response => {
-			console.log(response.data.status)
-			if (response.data.status == "success") {
-			// if (response.data.accessToken) {
+			console.log(response.data.token)
+			if (response.data.token) {
 				localStorage.setItem('user', JSON.stringify(response.data));
 			}
 
@@ -24,13 +23,13 @@ class AuthService {
 		localStorage.removeItem('user');
 	}
 
-	// register(user) {
-	// 	return axios.post(API_URL + 'signup', {
-	// 		username: user.username,
-	// 		email: user.email,
-	// 		password: user.password
-	// 	});
-	// }
+	register(user) {
+		return axios.post(API_URL + 'register', {
+			username: user.username,
+			email: user.email,
+			password: user.password
+		});
+	}
 }
 
 export default new AuthService();
