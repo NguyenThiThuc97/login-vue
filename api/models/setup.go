@@ -29,6 +29,7 @@ func ConnectDataBase() {
 		panic("Failed to connect to database!")
 	}
 	db.AutoMigrate(&User{})
+	db.AutoMigrate(&Product{})
 	// Initialise value
 	// m := User{Username: "user1", Password: "123"}
 	// db.Create(&m)

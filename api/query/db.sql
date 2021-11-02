@@ -5,4 +5,10 @@ create table Users (
 	password varchar,
 	token varchar,
 	token_verified_at timestamp
+);
+
+create table Products (
+	id serial,
+	product_name varchar,
+	del_fg integer
 )

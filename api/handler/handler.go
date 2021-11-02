@@ -28,6 +28,10 @@ func NewHandler(c *Config) {
 	g.POST("/register", controllers.Register)
 	g.POST("/signin", controllers.SignIn)
 
+	productGroup := g.Group("/product")
+	productGroup.POST("/create", controllers.CreateProduct)
+	productGroup.DELETE("/delete/:id", controllers.DeleteProduct)
+
 	c.R.NoRoute(func(c *gin.Context) {
 		c.JSON(http.StatusNotFound, gin.H{
 			"status":  404,
